@@ -38,12 +38,33 @@ void task2_2()
 
 }
 
+void taskdz_15()
+{
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+    system("chcp 65001 > nul");
+
+    double x = 2.444;
+    double y = 0.00869;
+    double z = - 130.0;
+
+    double numerator = pow(x, y + 1.0) + exp(y - 1.0);
+    double denominator = 1.0 + x * fabs(y - tan(z));
+    double fraction = numerator / denominator;
+
+    double diff = fabs(y - x);
+
+    double h = fraction * (1.0 + diff) + pow(diff, 2.0) / 2.0 - pow(diff, 3.0) / 3.0;
+
+    printf("При x = %.3f, y = %.5f, z = %.1f \n", x, y, z);
+    printf("h = %.5f \n", h);
+}
+
 
 int main() {
 
     task1();
     task2_2();
-    
+    taskdz_15();
 
     return 0;
 }
