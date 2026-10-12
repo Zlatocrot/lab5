@@ -1,70 +1,82 @@
-#define _CRT_SECURE_NO_WARNINGS
-#define _USE_MATH_DEFINES
-#define M_PI
+
 #include <stdio.h>
-#include <math.h>
 #include <locale.h>
+#include <math.h>
+#define e    2.71828182845904523536
+#define M_PI 3.14159265358979323846
 
-void task1()
-{
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    system("chcp 65001 > nul");
-    double gr;
-    printf("Введите угол в градусах: ");
-    scanf("%lf", &gr);
-
-    double rad = gr * M_PI / 180.0;
-    double result = sin(rad);
-
-    printf("Результат: sin(%.0f град) = %.6f\n", gr, result);
-
-}
-
-void task2_2()
-{
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    system("chcp 65001 > nul");
-    const double k = -4.0;
-    double x, a, b, y;
-
-    printf("Введите x: ");
-    scanf("%lf", &x);
-
-    a = log(fabs(-k*x));
-    b = exp(2.0 * x )+ a*x;
-    y = x* pow(a, 3.0) + b*b;
-
-    printf("x = %.1f, y = %.1f\n", x, y);
-
-}
-
-void taskdz_15()
-{
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    system("chcp 65001 > nul");
-
-    double x = 2.444;
-    double y = 0.00869;
-    double z = - 130.0;
-
-    double numerator = pow(x, y + 1.0) + exp(y - 1.0);
-    double denominator = 1.0 + x * fabs(y - tan(z));
-    double fraction = numerator / denominator;
-
-    double diff = fabs(y - x);
-
-    double h = fraction * (1.0 + diff) + pow(diff, 2.0) / 2.0 - pow(diff, 3.0) / 3.0;
-
-    printf("При x = %.3f, y = %.5f, z = %.1f \n", x, y, z);
-    printf("h = %.5f \n", h);
-}
-
+double prac1(double gr);
+double prac2(double x);
+void prac3(int A, int B, int C);
+double dz5();
 
 int main() {
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+    printf("Практика 4\n");
+    printf("\nЗадание 1\n");
+    double gr;
+    printf("введите угол в градусах: ");
+    scanf_s("%lf", &gr);
+    double sin_val = prac1(gr);
+    printf("%g град = %.6f\n", gr, sin_val);
 
-    task1();
-    task2_2();
-    taskdz_15();
+    printf("\nЗадание 2\n");
+    double x;
+    printf("введите значение x: ");
+    scanf_s("%lf", &x);
+    double y = prac2(x);
+    printf("\nрезультат:\n");
+    printf("значение x: %.1f\n", x);
+    printf("вычисленное значение функции y: %.1f\n", y);
+
+    printf("\nЗадание 3\n");
+    int A, B, C;
+    printf("Введите числа A, B и C: ");
+    scanf_s("%d %d %d", &A, &B, &C);
+    prac3(A, B, C);
+
+    printf("\nДомашнее задание\n");
+    double h = dz5();
+    printf("h = %.5f\n", h);
 
     return 0;
+}
+
+double prac1(double gr) {
+    double rad = gr * M_PI / 180.0;
+    return sin(rad);
+}
+
+double prac2(double x)
+{
+    const double k = -4.0;
+    double a = log(fabs(-k * x));
+    double b = exp(2.0 * x) + a * x;
+    return x * pow(a, 3.0) + pow(b, 2.0);
+}
+
+void prac3(int A, int B, int C)
+{
+    int uslovieA = (A % 2 == 0 && B % 2 != 0) || (A % 2 != 0 && B % 2 == 0);
+    int uslovieB = (A % 3 == 0) && (B % 3 == 0) && (C % 3 == 0);
+    printf("условие выполнено (1 - да, 0 - нет): %d\n", uslovieA);
+    printf("условие выполнено (1 - да, 0 - нет): %d\n", uslovieB);
+}
+
+double dz5()
+{
+    double x = 2.444;
+    double y = 0.869 * pow(10, -2);
+    double z = -0.13 * pow(10, 3);
+
+    double num1 = pow(x, y + 1) + pow(e, y - 1);
+    double mun1 = 1 + x * fabs(y - tan(z));
+
+    double drob1 = num1 / mun1;
+
+    double num2 = drob1 * (1 + fabs(y - x));
+    double drob2 = (pow(fabs(y - x), 2)) / 2;
+    double drob3 = (pow(fabs(y - x), 3)) / 3;
+
+    return num2 + drob2 - drob3;
 }
