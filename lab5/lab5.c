@@ -5,43 +5,6 @@
 #define e    2.71828182845904523536
 #define M_PI 3.14159265358979323846
 
-double prac1(double gr);
-double prac2(double x);
-void prac3(int A, int B, int C);
-double dz5();
-
-int main() {
-    setlocale(LC_ALL, "ru_RU.UTF-8");
-    printf("Практика 4\n");
-    printf("\nЗадание 1\n");
-    double gr;
-    printf("введите угол в градусах: ");
-    scanf_s("%lf", &gr);
-    double sin_val = prac1(gr);
-    printf("%g град = %.6f\n", gr, sin_val);
-
-    printf("\nЗадание 2\n");
-    double x;
-    printf("введите значение x: ");
-    scanf_s("%lf", &x);
-    double y = prac2(x);
-    printf("\nрезультат:\n");
-    printf("значение x: %.1f\n", x);
-    printf("вычисленное значение функции y: %.1f\n", y);
-
-    printf("\nЗадание 3\n");
-    int A, B, C;
-    printf("Введите числа A, B и C: ");
-    scanf_s("%d %d %d", &A, &B, &C);
-    prac3(A, B, C);
-
-    printf("\nДомашнее задание\n");
-    double h = dz5();
-    printf("h = %.5f\n", h);
-
-    return 0;
-}
-
 double prac1(double gr) {
     double rad = gr * M_PI / 180.0;
     return sin(rad);
@@ -79,4 +42,38 @@ double dz5()
     double drob3 = (pow(fabs(y - x), 3)) / 3;
 
     return num2 + drob2 - drob3;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "ru_RU.UTF-8");
+
+    printf("Практика 4\n");
+    printf("\nЗадание 1\n");
+    double gr;
+    printf("введите угол в градусах: ");
+    scanf_s("%lf", &gr);
+    double sin_val = prac1(gr);
+    printf("%g град = %.6f\n", gr, sin_val);
+
+    printf("\nЗадание 2\n");
+    double x;
+    printf("введите значение x: ");
+    scanf_s("%lf", &x);
+    double y = prac2(x);
+    printf("\nрезультат:\n");
+    printf("значение x: %.1f\n", x);
+    printf("вычисленное значение функции y: %.1f\n", y);
+
+    printf("\nЗадание 3\n");
+    int A, B, C;
+    printf("Введите числа A, B и C: ");
+    scanf_s("%d %d %d", &A, &B, &C);
+    prac3(A, B, C);
+
+    printf("\nДомашнее задание\n");
+    double h = dz5();
+    printf("h = %.5f\n", h);
+
+    return 0;
 }
